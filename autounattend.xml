@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+  <settings pass="oobeSystem">
+    <component name="Microsoft-Windows-Shell-Setup"
+               processorArchitecture="amd64"
+               publicKeyToken="31bf3856ad364e35"
+               language="neutral"
+               versionScope="nonSxS"
+               xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+      <OOBE>
+        <HideEULAPage>true</HideEULAPage>
+        <NetworkLocation>Work</NetworkLocation>
+        <ProtectYourPC>3</ProtectYourPC>
+      </OOBE>
+
+      <UserAccounts>
+        <LocalAccounts>
+          <LocalAccount wcm:action="add">
+            <Name>drover</Name>
+            <Group>Administrators</Group>
+            <Password>
+              <Value>CHANGE_ME_STRONG_PASSWORD</Value>
+              <PlainText>true</PlainText>
+            </Password>
+          </LocalAccount>
+        </LocalAccounts>
+      </UserAccounts>
+
+      <AutoLogon>
+        <Enabled>true</Enabled>
+        <LogonCount>1</LogonCount>
+        <Username>drover</Username>
+        <Password>
+          <Value>CHANGE_ME_STRONG_PASSWORD</Value>
+          <PlainText>true</PlainText>
+        </Password>
+      </AutoLogon>
+
+      <FirstLogonCommands>
+        <SynchronousCommand wcm:action="add">
+          <Order>1</Order>
+          <Description>Copy ClubSetup from USB and run</Description>
+          <CommandLine>powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "&amp; { $src = (Get-Volume | Where-Object DriveType -in 'Removable','Fixed' | ForEach-Object { $_.DriveLetter + ':\\' } | Where-Object { Test-Path ($_ + 'ClubSetup\\Run.ps1') } | Select-Object -First 1); if(-not $src){ exit 9 }; New-Item -ItemType Directory -Force C:\\ClubSetup | Out-Null; robocopy ($src + 'ClubSetup') C:\\ClubSetup /E /R:1 /W:1 /NFL /NDL /NP | Out-Null; powershell.exe -ExecutionPolicy Bypass -NoProfile -File C:\\ClubSetup\\Run.ps1 }"</CommandLine>
+        </SynchronousCommand>
+      </FirstLogonCommands>
+
+    </component>
+  </settings>
+</unattend>

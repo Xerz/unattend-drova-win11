@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Description>Drova reboot task</Description>
+  </RegistrationInfo>
+  <Triggers>
+    <DailyTrigger>
+      <StartBoundary>2024-01-01T04:00:00</StartBoundary>
+      <Enabled>true</Enabled>
+    </DailyTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <UserId>[[Нужно будет сменить после импорта на игрового пользователя]]</UserId>
+      <RunLevel>HighestAvailable</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
+    <Enabled>true</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT0S</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>shutdown.exe</Command>
+      <Arguments>/r /t 0 /f</Arguments>
+    </Exec>
+  </Actions>
+</Task>
