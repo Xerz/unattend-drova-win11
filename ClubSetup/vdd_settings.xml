@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vdd_settings>
+  <resolutions>
+    <resolution>
+      <width>1920</width>
+      <height>1080</height>
+      <refresh_rate>60</refresh_rate>
+    </resolution>
+    <resolution>
+      <width>2560</width>
+      <height>1600</height>
+      <refresh_rate>30</refresh_rate>
+    </resolution>
+    <resolution>
+      <width>1280</width>
+      <height>720</height>
+      <refresh_rate>60</refresh_rate>
+    </resolution>
+  </resolutions>
+</vdd_settings>
